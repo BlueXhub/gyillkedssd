@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1020">
+<title>Commands · Guildy</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-mark">G</span><span>Guildy</span></a>
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="updates.html">Updates</a>
+    <a href="commands.html">Commands</a>
+    <a href="premium.html">Premium</a>
+  </nav>
+</header>
+
+<main class="container">
+  <section class="page-heading">
+    <div class="eyebrow">THE TOOLKIT</div>
+    <h1>Command <span class="gradient-text">directory.</span></h1>
+    <p>Find the right command for the job.</p>
+  </section>
+
+  <div class="search-row">
+    <input id="command-search" class="search-input" type="search" placeholder="Search commands or descriptions…" aria-label="Search commands">
+    <select id="command-category" class="search-select" aria-label="Filter category">
+      <option value="">All categories</option>
+      <option value="moderation">Moderation</option>
+      <option value="tickets">Tickets</option>
+      <option value="utility">Utility</option>
+      <option value="fun">Fun</option>
+    </select>
+  </div>
+
+  <div class="command-grid" id="command-grid">
+    <article class="command-card" data-name="/ban" data-category="moderation" data-search="ban remove a member from the server moderation">
+      <div class="command-top"><code>/ban</code></div>
+      <h3>Moderation</h3>
+      <p>Remove a member from the server permanently.</p>
+      <div class="command-bottom"><span>Permission: Ban Members</span><code>/ban user reason</code></div>
+    </article>
+
+    <article class="command-card" data-name="/kick" data-category="moderation" data-search="kick remove a member temporarily moderation">
+      <div class="command-top"><code>/kick</code></div>
+      <h3>Moderation</h3>
+      <p>Remove a member from the server (they can rejoin).</p>
+      <div class="command-bottom"><span>Permission: Kick Members</span><code>/kick user reason</code></div>
+    </article>
+
+    <article class="command-card" data-name="/timeout" data-category="moderation" data-search="timeout mute a member for a duration moderation">
+      <div class="command-top"><code>/timeout</code></div>
+      <h3>Moderation</h3>
+      <p>Temporarily mute a member so they cannot send messages.</p>
+      <div class="command-bottom"><span>Permission: Moderate Members</span><code>/timeout user duration reason</code></div>
+    </article>
+
+    <article class="command-card" data-name="/ticket" data-category="tickets" data-search="ticket open a support ticket tickets">
+      <div class="command-top"><code>/ticket</code></div>
+      <h3>Tickets</h3>
+      <p>Open a private support ticket with the staff team.</p>
+      <div class="command-bottom"><span>Permission: Everyone</span><code>/ticket reason</code></div>
+    </article>
+
+    <article class="command-card" data-name="/close" data-category="tickets" data-search="close close the current ticket tickets">
+      <div class="command-top"><code>/close</code></div>
+      <h3>Tickets</h3>
+      <p>Close the current support ticket channel.</p>
+      <div class="command-bottom"><span>Permission: Manage Channels</span></div>
+    </article>
+
+    <article class="command-card" data-name="/help" data-category="utility" data-search="help list available commands utility">
+      <div class="command-top"><code>/help</code></div>
+      <h3>Utility</h3>
+      <p>Show a list of available commands and how to use them.</p>
+      <div class="command-bottom"><span>Permission: Everyone</span></div>
+    </article>
+
+    <article class="command-card" data-name="/serverinfo" data-category="utility" data-search="serverinfo show server statistics utility">
+      <div class="command-top"><code>/serverinfo</code></div>
+      <h3>Utility</h3>
+      <p>Display information and statistics about the server.</p>
+      <div class="command-bottom"><span>Permission: Everyone</span></div>
+    </article>
+
+    <article class="command-card" data-name="/userinfo" data-category="utility" data-search="userinfo show information about a user utility">
+      <div class="command-top"><code>/userinfo</code></div>
+      <h3>Utility</h3>
+      <p>Show profile information for a member.</p>
+      <div class="command-bottom"><span>Permission: Everyone</span><code>/userinfo user</code></div>
+    </article>
+
+    <article class="command-card" data-name="/poll" data-category="fun" data-search="poll create a poll fun">
+      <div class="command-top"><code>/poll</code><span class="premium-tag">PREMIUM</span></div>
+      <h3>Fun</h3>
+      <p>Create a quick poll with reactions for voting.</p>
+      <div class="command-bottom"><span>Permission: Everyone</span><code>/poll question options</code></div>
+    </article>
+
+    <article class="command-card" data-name="/giveaway" data-category="fun" data-search="giveaway start a giveaway fun">
+      <div class="command-top"><code>/giveaway</code><span class="premium-tag">PREMIUM</span></div>
+      <h3>Fun</h3>
+      <p>Start a giveaway with a prize and duration.</p>
+      <div class="command-bottom"><span>Permission: Manage Server</span><code>/giveaway prize duration</code></div>
+    </article>
+  </div>
+
+  <p id="no-commands" class="empty-state" hidden>No commands match your search.</p>
+</main>
+
+<footer class="footer">
+  <div>
+    <a class="brand small" href="index.html"><span class="brand-mark">G</span><span>Guildy</span></a>
+    <p>Tools for better Discord communities.</p>
+  </div>
+  <div class="footer-links">
+    <a href="commands.html">Commands</a>
+    <a href="updates.html">Updates</a>
+    <a href="premium.html">Premium</a>
+    <a href="#">Support</a>
+  </div>
+  <p class="muted">© 2026 Guildy. Not affiliated with Discord.</p>
+</footer>
+
+<script>
+(() => {
+  const q = document.getElementById('command-search');
+  const c = document.getElementById('command-category');
+  const cards = [...document.querySelectorAll('.command-card')];
+  const empty = document.getElementById('no-commands');
+  function filter() {
+    let count = 0;
+    cards.forEach(card => {
+      const ok = card.dataset.search.includes(q.value.toLowerCase()) && (!c.value || card.dataset.category === c.value);
+      card.hidden = !ok;
+      if (ok) count++;
+    });
+    empty.hidden = count > 0;
+  }
+  q.addEventListener('input', filter);
+  c.addEventListener('change', filter);
+})();
+</script>
+</body>
+</html>
